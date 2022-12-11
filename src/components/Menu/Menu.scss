@@ -1,0 +1,48 @@
+.menu-icon {
+  font-size: 46px;
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: 130px;
+  right: 0px;
+  z-index: 3;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  display: none;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 0px;
+  &:hover {
+    background-color: antiquewhite;
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+  }
+
+  &-src {
+    object-fit: contain;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu-icon-active {
+  transform: translateX(-195px);
+  background-color: wheat;
+}
+
+.menu-icon-not-active {
+  transform: translate(0%);
+  background-color: none;
+}

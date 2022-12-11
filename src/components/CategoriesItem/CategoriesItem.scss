@@ -1,0 +1,11 @@
+.categoriesItem {
+  font-size: 16px;
+  font-weight: 400;
+  color: inherit;
+  cursor: pointer;
+  padding: 10px 10px;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: wheat;
+  }
+}

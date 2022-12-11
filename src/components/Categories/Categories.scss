@@ -1,0 +1,12 @@
+.categories {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  color: black;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}

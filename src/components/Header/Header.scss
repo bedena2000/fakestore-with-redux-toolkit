@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: center;
+  &__info {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 10px;
+  }
+  &__title {
+    font-size: 28px;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  @media screen and (max-width: 400px) {
+        &__title {
+            font-size: 20px;
+        }
+  }
+
+}
