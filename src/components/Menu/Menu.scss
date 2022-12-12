@@ -16,9 +16,9 @@
   height: 70px;
   overflow: hidden;
   border-radius: 0px;
-  &:hover {
-    background-color: antiquewhite;
-  }
+  // &:hover {
+  //   background-color: antiquewhite;
+  // }
 
   @media (max-width: 600px) {
     display: flex;
@@ -39,7 +39,6 @@
 
 .menu-icon-active {
   transform: translateX(-195px);
-  background-color: wheat;
 }
 
 .menu-icon-not-active {

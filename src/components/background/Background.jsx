@@ -6,12 +6,15 @@ import { changeBurgerActive } from '../../app/slices/menuSlice';
 export const Background = () => {
   const dispatch = useDispatch();
   const burgerState = useSelector(burgerActiveSelector);
-  console.log(burgerState);
 
   const onBackgroundClick = () => {
     const action = changeBurgerActive();
     dispatch(action);
   };
 
-  return <div className={`background ${burgerState ? 'background-active' : 'background-not-active'}`} onClick={onBackgroundClick}></div>;
+  return (
+    <div
+      className={`background ${burgerState ? 'background-active' : 'background-not-active'}`}
+      onClick={onBackgroundClick}></div>
+  );
 };

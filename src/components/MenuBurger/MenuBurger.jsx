@@ -8,6 +8,7 @@ export const MenuBurger = () => {
   const burgerState = useSelector(burgerActiveSelector);
   return (
     <div className={`menu-burger ${burgerState ? 'menu-burger-active' : 'menu-burger-not-active'}`}>
+      
       <div className='menu-burger-categories'>
         <CategoriesItem categoryName="Clothes" />
         <CategoriesItem categoryName="Electronics" />

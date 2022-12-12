@@ -1,5 +1,7 @@
 import './Menu.scss';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
+import CloseIcon from '@mui/icons-material/Close';
 
 // Redux Toolkit
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,7 +20,11 @@ export const Menu = () => {
     <div
       onClick={changeBurger}
       className={`menu-icon ${burgerState ? 'menu-icon-active' : 'menu-icon-not-active'}`}>
-      <MenuOpenIcon className='menu-icon-src' fontSize="inherit" />
+      {burgerState ? (
+        <CloseIcon className="menu-icon-src" fontSize="inherit" />
+      ) : (
+        <MenuOpenIcon className="menu-icon-src" fontSize="inherit" />
+      )}
     </div>
   );
 };
