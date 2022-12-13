@@ -1,25 +1,33 @@
+import { useEffect, useState } from 'react';
 import './Shop.scss';
 
+// Api tools
+import axios from 'axios';
+
 // Redux Toolkit
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addShopItems } from '../../app/slices/shopItemsSlice';
+import { getCurrentPage } from '../../app/selectors/selectors';
 
 // Components
 import { Header } from '../../components/Header/Header';
 import { Categories } from '../../components/Categories/Categories';
 import { CardItem } from '../../components/CardItem/CardItem';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { PaginationWrapper } from '../../components/Pagination/Pagination';
 
 // React Spinners
 import { ColorRing } from 'react-loader-spinner';
 
 export const Shop = () => {
   const [items, setItems] = useState([]);
+  const currentPage = useSelector(getCurrentPage);
   const dispatch = useDispatch();
 
   const getShopItems = async () => {
-    const result = await axios.get('https://api.escuelajs.co/api/v1/products?offset=0&limit=120');
+    setItems([]);
+    const result = await axios.get(
+      `https://api.escuelajs.co/api/v1/products?offset=${currentPage}&limit=16`,
+    );
     setItems(result.data);
     const action = addShopItems(result.data);
     dispatch(action);
@@ -27,7 +35,7 @@ export const Shop = () => {
 
   useEffect(() => {
     getShopItems();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="shop">
@@ -35,7 +43,7 @@ export const Shop = () => {
       <Categories />
       <div className="shop-wrapper">
         {items.length === 0 ? (
-          <div className='loading-icon'>
+          <div className="loading-icon">
             <ColorRing
               visible={true}
               height="160"
@@ -46,8 +54,20 @@ export const Shop = () => {
               colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
             />
           </div>
-        ) : (items.map(item => <CardItem key={item.id} title={item.title} price={item.price} description={item.description} imageUrl={item.images[0]} />)
+        ) : (
+          items.map((item) => (
+            <CardItem
+              key={item.id}
+              title={item.title}
+              price={item.price}
+              description={item.description}
+              imageUrl={item.images[0]}
+            />
+          ))
         )}
+      </div>
+      <div className="pagination-wrapper">
+        <PaginationWrapper />
       </div>
     </div>
   );
