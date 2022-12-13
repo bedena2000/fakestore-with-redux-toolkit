@@ -1,0 +1,31 @@
+.shop {
+  &-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 34px 24px;
+    overflow: hidden;
+
+    @media (max-width: 1320px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (max-width: 975px) {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+ 
+  }
+}
+
+.loading-icon {
+  display: flex;
+  justify-content: center;
+}

@@ -1,5 +1,6 @@
 import './MainSection.scss';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+import { Link } from 'react-router-dom';
 
 // Image
 import MainImage from '../../assets/images/main-page-image.jpg';
@@ -7,7 +8,6 @@ import MainImage from '../../assets/images/main-page-image.jpg';
 export const MainSection = () => {
   return (
     <div className="main-section">
-
       {/* Left Part */}
 
       <div className="main-section-left">
@@ -26,19 +26,17 @@ export const MainSection = () => {
         </p>
         <div className="main-section__button">
           <ShoppingBasketOutlinedIcon className="main-section__button__src" />
-          <p className="main-section__button__text">Show Now</p>
+          <Link className="main-section__button__text" to="/shop">
+            Show Now
+          </Link>
         </div>
       </div>
 
       {/* Right Part */}
 
-      <div className='main-section-right'>
-        <img 
-            src={MainImage}
-            alt='mainSectionImage'
-        />
+      <div className="main-section-right">
+        <img src={MainImage} alt="mainSectionImage" />
       </div>
-
     </div>
   );
 };
