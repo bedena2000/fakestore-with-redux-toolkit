@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { addShopItems } from '../../app/slices/shopItemsSlice';
 import { getCurrentPage } from '../../app/selectors/selectors';
+import { getAllShopItems } from '../../app/selectors/selectors';
 
 // Components
 import { Header } from '../../components/Header/Header';
@@ -19,16 +20,14 @@ import { PaginationWrapper } from '../../components/Pagination/Pagination';
 import { ColorRing } from 'react-loader-spinner';
 
 export const Shop = () => {
-  const [items, setItems] = useState([]);
+  const items = useSelector(getAllShopItems);
   const currentPage = useSelector(getCurrentPage);
   const dispatch = useDispatch();
 
   const getShopItems = async () => {
-    setItems([]);
     const result = await axios.get(
       `https://api.escuelajs.co/api/v1/products?offset=${currentPage}&limit=16`,
     );
-    setItems(result.data);
     const action = addShopItems(result.data);
     dispatch(action);
   };
@@ -61,7 +60,7 @@ export const Shop = () => {
               title={item.title}
               price={item.price}
               description={item.description}
-              imageUrl={item.images[0]}
+              imageUrl={item.images[0] ? item.images[0] : item.images[1]}
             />
           ))
         )}

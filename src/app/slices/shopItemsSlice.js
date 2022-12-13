@@ -7,7 +7,7 @@ const shopItemsSlice = createSlice({
   initialState,
   reducers: {
     addShopItems(state, action) {
-        state.push(action.payload);
+        return action.payload;
     }
   },
 });
