@@ -1,0 +1,125 @@
+.describe {
+  padding: 10px;
+  &-wrapper {
+    &-go-back {
+      font-size: 24px;
+      cursor: pointer;
+      &:hover {
+        color: black;
+      }
+    }
+    margin-top: 40px;
+    & > h2 {
+      margin-top: 30px;
+      font-size: 46px;
+      font-weight: 100;
+      color: brown;
+    }
+    &__item {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+      &-left {
+        flex-basis: 50%;
+        height: 400px;
+        display: flex;
+        gap: 20px;
+        &-side-images {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 10px;
+          &-part {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover {
+              border: 1px solid black;
+            }
+            & > img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+        &-main-image {
+          height: 100%;
+          & > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        @media (max-width: 600px) {
+          flex-direction: column-reverse;
+          &-side-images {
+            flex-direction: row;
+          }
+        }
+      }
+      &-right {
+        flex-basis: 50%;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: scroll;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        & > p {
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+        & > h3 {
+          margin-bottom: 10px;
+        }
+        &__description {
+          font-size: 20px;
+          margin-bottom: 10px;
+          overflow: scroll;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+        &-price {
+          margin-bottom: 10px;
+          & > div {
+            font-size: 20px;
+            color: brown;
+            & > span {
+              font-size: 32px;
+            }
+          }
+        }
+        &__button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #1e2832;
+          padding: 10px;
+          cursor: pointer;
+          color: white;
+          gap: 10px;
+          transition: all 0.3s ease;
+          &:hover {
+            background-color: rgba(30, 40, 50, 0.8274509804);
+          }
+        }
+      }
+      @media (max-width: 1000px) {
+        flex-direction: column;
+        &-left {
+          width: 100%;
+          height: fit-content;
+        }
+        &-right {
+          width: 100%;
+          height: fit-content;
+        }
+      }
+    }
+  }
+}

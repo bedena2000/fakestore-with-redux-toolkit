@@ -3,6 +3,7 @@ import { Menu } from './components/Menu/Menu';
 import { MenuBurger } from './components/MenuBurger/MenuBurger';
 import { Background } from './components/background/Background';
 import { ErrorPage } from './pages/ErrorPage/ErrorPage';
+import { Describe } from './pages/Describe/Describe';
 // Pages
 import MainPage from './pages/MainPage/MainPage';
 import { Shop } from './pages/Shop/Shop';
@@ -14,12 +15,17 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <MainPage />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: '/shop',
     element: <Shop />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/describe',
+    element: <Describe />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

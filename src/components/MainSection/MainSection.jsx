@@ -24,12 +24,10 @@ export const MainSection = () => {
             Figma
           </a>
         </p>
-        <div className="main-section__button">
+        <Link to="/shop" className="main-section__button">
           <ShoppingBasketOutlinedIcon className="main-section__button__src" />
-          <Link className="main-section__button__text" to="/shop">
-            Show Now
-          </Link>
-        </div>
+          <p className="main-section__button__text">Show Now</p>
+        </Link>
       </div>
 
       {/* Right Part */}

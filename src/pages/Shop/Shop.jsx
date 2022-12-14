@@ -18,6 +18,7 @@ import { PaginationWrapper } from '../../components/Pagination/Pagination';
 
 // React Spinners
 import { ColorRing } from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 
 export const Shop = () => {
   const items = useSelector(getAllShopItems);
@@ -40,6 +41,7 @@ export const Shop = () => {
     <div className="shop">
       <Header title="Shop Page" />
       <Categories />
+      <Link to="/">Main Page</Link>
       <div className="shop-wrapper">
         {items.length === 0 ? (
           <div className="loading-icon">
@@ -57,6 +59,7 @@ export const Shop = () => {
           items.map((item) => (
             <CardItem
               key={item.id}
+              id={item.id}
               title={item.title}
               price={item.price}
               description={item.description}
