@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Describe.scss';
 
 // Components
 import { Header } from '../../components/Header/Header';
+import { CardItem } from '../../components/CardItem/CardItem';
 
 // Redux Toolkit
 import { useSelector } from 'react-redux';
@@ -16,19 +17,46 @@ import ErrorIcon from '../../assets/images/error-icon.png';
 
 // Icons
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import axios from 'axios';
 
 export const Describe = () => {
   const currentItem = useSelector(getDescribeItem);
-  console.log(currentItem);
   const [mainImage, setMainImage] = useState(
     currentItem[0]?.images[0] || currentItem[0]?.images[1] || currentItem[0]?.images[2] || null,
   );
+
+  const [categories, setCategories] = useState([]);
 
   const newMainImage = (e) => {
     const dataAttribute = Number(e.target.getAttribute('data-number'));
     const imageUrl = currentItem[0]?.images[dataAttribute];
     setMainImage(imageUrl);
   };
+
+  useEffect(() => {
+    const categoryName = currentItem[0].category.name;
+    const categoriesById = {
+      Clothes: 1,
+      Electronics: 2,
+      Furniture: 3,
+      Shoes: 4,
+      Others: 5,
+      Mobile: 6,
+    };
+    const categoryId = categoriesById[categoryName];
+    const getItemsByCategory = async (categoryIdForCall) => {
+      const result = await axios.get(
+        `https://api.escuelajs.co/api/v1/categories/${categoryId}/products`,
+      );
+      const categoriesElements = result.data;
+      const newArray = [];
+      newArray.push(categoriesElements[0]);
+      newArray.push(categoriesElements[1]);
+      newArray.push(categoriesElements[2]);
+      setCategories(newArray);
+    };
+    getItemsByCategory();
+  });
 
   return (
     <div className="describe">
@@ -90,6 +118,24 @@ export const Describe = () => {
               <p>Add To Cart</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Another Recommendations */}
+
+      <div className="recommendations">
+        <h2>Recommended for you: </h2>
+        <div className="recommendations-wrapper">
+          {categories.map((item) => (
+            <CardItem
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              price={item.price}
+              description={item.description}
+              imageUrl={item.images[0] ? item.images[0] : item.images[1]}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -11,15 +11,41 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateItem } from '../../app/slices/describeSlice';
 import { getAllShopItems } from '../../app/selectors/selectors';
 import { Link } from 'react-router-dom';
+import { addToWishlist } from '../../app/slices/wishlistSlice';
+import { addItemToCart, updateCartNumber } from '../../app/slices/cartSlice';
 
 export const CardItem = ({ title, price, description, category, imageUrl, id }) => {
   const dispatch = useDispatch();
+  const wishlistItems = useSelector((state) => state.wishlist);
   const allShopItems = useSelector(getAllShopItems);
+  const cartItemsList = useSelector((state) => state.cartItems);
 
   const expandItem = () => {
     const ourItem = allShopItems.filter((shopItem) => shopItem.id === id);
     if (ourItem.length !== 0) {
       dispatch(updateItem(ourItem[0]));
+    }
+  };
+
+  const addToWishlistFunc = () => {
+    const ourItem = allShopItems.filter((shopItem) => shopItem.id === id);
+    const yesOrNot = wishlistItems.find((item) => item.id === ourItem[0].id);
+    if (!yesOrNot) {
+      dispatch(addToWishlist(ourItem[0]));
+    }
+  };
+
+  const addToCart = () => {
+    const ourItem = allShopItems.filter((shopItem) => shopItem.id === id)[0];
+    const ourCartItem = cartItemsList.find((item) => item.id === ourItem.id);
+    if (ourItem && !ourCartItem) {
+      const newItem = {
+        ...ourItem,
+        count: 1,
+      };
+      dispatch(addItemToCart(newItem));
+    } else {
+      dispatch(updateCartNumber(ourItem.id));
     }
   };
 
@@ -43,16 +69,22 @@ export const CardItem = ({ title, price, description, category, imageUrl, id }) 
       </div>
       <div className="card-bottom">
         <div className="card-bottom-left">
-          <FavoriteBorderIcon titleAccess="add to wishlist" className="card-bottom-left__icon" />
+          <Link to="/wishlist">
+            <FavoriteBorderIcon
+              onClick={addToWishlistFunc}
+              titleAccess="add to wishlist"
+              className="card-bottom-left__icon"
+            />
+          </Link>
           <Link to="/describe" className="card-bottom-left__icon">
             <SearchIcon onClick={expandItem} titleAccess="expand" />
           </Link>
         </div>
         <div className="card-bottom-right">
-          <div className="card-bottom-right-add-to-cart">
+          <Link to="/cartPage" className="card-bottom-right-add-to-cart" onClick={addToCart}>
             <ShoppingCartIcon />
             <p className="card-bottom-right-add-to-cart-title">Add To Cart</p>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

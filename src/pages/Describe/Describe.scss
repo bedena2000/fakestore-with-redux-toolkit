@@ -14,6 +14,9 @@
       font-size: 46px;
       font-weight: 100;
       color: brown;
+      @media (max-width: 465px) {
+        font-size: 22px;
+      }
     }
     &__item {
       display: flex;
@@ -120,6 +123,32 @@
           height: fit-content;
         }
       }
+    }
+  }
+}
+
+.recommendations {
+  margin-top: 100px;
+  & > h2 {
+    margin-bottom: 30px;
+  }
+  &-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1000px) {
+    &-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 680px) {
+    &-wrapper {
+      grid-template-columns: 1fr;
     }
   }
 }

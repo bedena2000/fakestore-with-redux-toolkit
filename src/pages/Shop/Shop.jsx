@@ -34,13 +34,14 @@ export const Shop = () => {
   };
 
   useEffect(() => {
-    getShopItems();
-  }, [currentPage]);
+    if (items.length === 0) {
+      getShopItems();
+    }
+  }, []);
 
   return (
     <div className="shop">
       <Header title="Shop Page" />
-      <Categories />
       <Link to="/">Main Page</Link>
       <div className="shop-wrapper">
         {items.length === 0 ? (

@@ -7,3 +7,24 @@
   height: 100vh;
   padding: 20px;
 }
+
+.links-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  gap: 60px;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+  & > a {
+    text-decoration: none;
+    font-size: 24px;
+    transition: all .3s ease;
+    padding: 10px;
+    &:hover {
+      background-color: yellow;
+      color: black;
+    }
+  }
+}
